@@ -96,7 +96,7 @@ class ActivitylogResource extends Resource
                             TextInput::make('subject_type')
                                 ->afterStateHydrated(function ($component, ?Model $record, $state) {
                                     /** @var Activity&ActivityModel $record */
-                                    return $state ? $component->state(Str::of($state)->afterLast('\\')->headline().' # '.$record->subject_id) : '-';
+                                    return $state ? $component->state(Str::of($state)->afterLast('\\')->headline() . ' # ' . $record->subject_id) : '-';
                                 })
                                 ->label(__('activitylog::forms.fields.subject_type.label')),
 
@@ -202,11 +202,11 @@ class ActivitylogResource extends Resource
             ->formatStateUsing(fn ($state) => ucwords($state))
             ->badge()
             ->color(fn (string $state): string => match ($state) {
-                'draft' => 'gray',
+                'draft'   => 'gray',
                 'updated' => 'warning',
                 'created' => 'success',
                 'deleted' => 'danger',
-                default => 'primary',
+                default   => 'primary',
             })
             ->searchable()
             ->sortable();
@@ -222,7 +222,7 @@ class ActivitylogResource extends Resource
                     return '-';
                 }
 
-                return Str::of($state)->afterLast('\\')->headline().' # '.$record->subject_id;
+                return Str::of($state)->afterLast('\\')->headline() . ' # ' . $record->subject_id;
             })
             ->searchable()
             ->hidden(fn (Livewire $livewire) => $livewire instanceof ActivitylogRelationManager);
@@ -270,11 +270,11 @@ class ActivitylogResource extends Resource
                 $indicators = [];
 
                 if ($data['created_from'] ?? null) {
-                    $indicators['created_from'] = __('activitylog::tables.filters.created_at.created_from').Carbon::parse($data['created_from'])->toFormattedDateString();
+                    $indicators['created_from'] = __('activitylog::tables.filters.created_at.created_from') . Carbon::parse($data['created_from'])->toFormattedDateString();
                 }
 
                 if ($data['created_until'] ?? null) {
-                    $indicators['created_until'] = __('activitylog::tables.filters.created_at.created_until').Carbon::parse($data['created_until'])->toFormattedDateString();
+                    $indicators['created_until'] = __('activitylog::tables.filters.created_at.created_until') . Carbon::parse($data['created_until'])->toFormattedDateString();
                 }
 
                 return $indicators;
@@ -309,7 +309,7 @@ class ActivitylogResource extends Resource
     {
         return [
             'index' => ListActivitylog::route('/'),
-            'view' => ViewActivitylog::route('/{record}'),
+            'view'  => ViewActivitylog::route('/{record}'),
         ];
     }
 
