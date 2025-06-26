@@ -41,7 +41,7 @@ ActivityLog Plugin is translated for :
 You can install the package via composer:
 
 ```bash
-composer require rmsramos/activitylog
+composer require filamerce/activitylog
 ```
 
 After that run the install command:
