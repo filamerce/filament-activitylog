@@ -58,7 +58,7 @@ class TimeLinePropertiesEntry extends Entry
         $changes = [];
 
         foreach ($newValues as $key => $newValue) {
-            $oldValue = is_array($oldValues[$key]) ? json_encode($oldValues[$key]) : $oldValues[$key] ?? '-';
+            $oldValue = is_array($oldValues[$key]) ? json_encode($oldValues[$key], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) : $oldValues[$key] ?? '-';
             $newValue = $this->formatNewValue($newValue);
 
             if (isset($oldValues[$key]) && $oldValues[$key] != $newValue) {
@@ -86,6 +86,6 @@ class TimeLinePropertiesEntry extends Entry
 
     private function formatNewValue($value): string
     {
-        return is_array($value) ? json_encode($value) : $value ?? '—';
+        return is_array($value) ? json_encode($value, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) : $value ?? '—';
     }
 }

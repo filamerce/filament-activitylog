@@ -321,7 +321,7 @@ trait ActionContent
 
         foreach ($value as &$item) {
             if (is_array($item)) {
-                $item = json_encode($item, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE);
+                $item = json_encode($item, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
             }
         }
 
