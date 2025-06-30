@@ -2,14 +2,14 @@
 
 ### Spatie/Laravel-activitylog for Filament
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/filamerce/activitylog.svg?style=flat-square)](https://packagist.org/packages/filamerce/activitylog)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/filamerce/filament-activitylog.svg?style=flat-square)](https://packagist.org/packages/filamerce/filament-activitylog)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/filamerce/activitylog/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/filamerce/activitylog/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/filamerce/activitylog.svg?style=flat-square)](https://packagist.org/packages/filamerce/activitylog/stats)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/filamerce/filament-activitylog/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/filamerce/filament-activitylog/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/filamerce/filament-activitylog.svg?style=flat-square)](https://packagist.org/packages/filamerce/filament-activitylog/stats)
 
 <div class="filament-hidden">
 
-![Screenshot of Application Feature](https://raw.githubusercontent.com/filamerce/activitylog/main/arts/cover.jpeg)
+![Screenshot of Application Feature](https://raw.githubusercontent.com/filamerce/filament-activitylog/main/arts/cover.jpeg)
 
 </div>
 
@@ -41,7 +41,7 @@ ActivityLog Plugin is translated for :
 You can install the package via composer:
 
 ```bash
-composer require filamerce/activitylog
+composer require filamerce/filament-activitylog
 ```
 
 After that run the install command:
@@ -119,7 +119,7 @@ class NewsItem extends Model
 
 ## Plugin usage
 
-![Screenshot of Application Feature](https://raw.githubusercontent.com/filamerce/activitylog/main/arts/resource.png)
+![Screenshot of Application Feature](https://raw.githubusercontent.com/filamerce/filament-activitylog/main/arts/resource.png)
 
 In your Panel ServiceProvider `(App\Providers\Filament)` active the plugin
 
@@ -325,7 +325,7 @@ public function panel(Panel $panel): Panel
 ## Relationship manager
 
 If you have a model that uses the `Spatie\Activitylog\Traits\LogsActivity` trait, you can add the `Rmsramos\Activitylog\RelationManagers\ActivitylogRelationManager` relationship manager to your Filament resource to display all of the activity logs that are performed on your model.
-![Screenshot of Application Feature](https://raw.githubusercontent.com/filamerce/activitylog/main/arts/relationManager.png)
+![Screenshot of Application Feature](https://raw.githubusercontent.com/filamerce/filament-activitylog/main/arts/relationManager.png)
 
 ```php
 use Rmsramos\Activitylog\RelationManagers\ActivitylogRelationManager;
@@ -340,7 +340,7 @@ public static function getRelations(): array
 
 ## Timeline Action
 
-![Screenshot of Application Feature](https://raw.githubusercontent.com/filamerce/activitylog/main/arts/timeline.png)
+![Screenshot of Application Feature](https://raw.githubusercontent.com/filamerce/filament-activitylog/main/arts/timeline.png)
 
 To make viewing activity logs easier, you can use a custom action. In your UserResource in the table function, add the `ActivityLogTimelineTableAction`.
 
