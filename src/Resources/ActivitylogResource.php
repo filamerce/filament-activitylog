@@ -145,7 +145,7 @@ class ActivitylogResource extends Resource
 
                         if ($properties->count()) {
                             $schema[] = Textarea::make('properties')
-                                ->formatStateUsing(fn () => json_encode($properties->toArray(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE))
+                                ->formatStateUsing(fn () => json_encode($properties->toArray(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
                                 ->label(__('activitylog::forms.fields.properties.label'))
                                 ->rows(10)
                                 ->disabled()
@@ -160,7 +160,7 @@ class ActivitylogResource extends Resource
                                     ->formatStateUsing(function () use ($record) {
                                         $old = $record->properties->get('old');
                                         $normalized = static::normalizeProperties(static::formatDateValues($old));
-                                        return json_encode($normalized, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                                        return json_encode($normalized, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
                                     })
                                     ->label(__('activitylog::forms.fields.old.label'))
                                     ->rows(10)
@@ -184,7 +184,7 @@ class ActivitylogResource extends Resource
                                     ->formatStateUsing(function () use ($record) {
                                         $attributes = $record->properties->get('attributes');
                                         $normalized = static::normalizeProperties(static::formatDateValues($attributes));
-                                        return json_encode($normalized, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                                        return json_encode($normalized, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
                                     })
                                     ->label(__('activitylog::forms.fields.attributes.label'))
                                     ->rows(10)
@@ -409,7 +409,7 @@ class ActivitylogResource extends Resource
 
         foreach ($value as &$item) {
             if (is_array($item)) {
-                $item = json_encode($item, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE);
+                $item = json_encode($item, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
             } elseif (is_string($item) && json_decode($item) !== null) {
                 $decoded = json_decode($item, true);
                 if ($decoded !== null) {
