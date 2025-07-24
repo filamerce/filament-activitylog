@@ -83,7 +83,7 @@ class TimeLineTitleEntry extends Entry
             return 'unknown';
         }
 
-        if (class_exists($state['subject'])) {
+        if (is_object($state['subject'])) {
             if (property_exists($state['subject'], 'activityTitleName') && ! empty($state['subject']::$activityTitleName)) {
                 return $state['subject']::$activityTitleName;
             } else if (\method_exists($state['subject'], 'activityTitle')) {

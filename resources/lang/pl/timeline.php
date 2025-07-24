@@ -1,14 +1,14 @@
 <?php
 return [
     'title' => [
-        'modifiedTitle' => '<strong>%s</strong> zostało <strong>%s</strong> przez <strong>%s</strong>. <br><small> Zaktualizowano: <strong>%s</strong></small>',
+        'modifiedTitle' => 'Zasób <strong>%s</strong> został <strong>%s</strong> przez <strong>%s</strong>. <br><small> Data aktualizacji: <strong>%s</strong></small>',
     ],
     'event' => [
-        'created'      => 'utworzone',
-        'updated'      => 'zaktualizowane',
-        'deleted'      => 'usunięte',
-        'restored'     => 'przywrócone',
-        'forceDeleted' => 'trwale usunięte',
+        'created'      => 'utworzony',
+        'updated'      => 'zaktualizowany',
+        'deleted'      => 'usunięty',
+        'restored'     => 'przywrócony',
+        'forceDeleted' => 'trwale usunięty',
         'byperson'     => [
             'created'      => 'utworzył',
             'updated'      => 'zmienił',
