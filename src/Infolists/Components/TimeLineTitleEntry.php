@@ -57,9 +57,8 @@ class TimeLineTitleEntry extends Entry
             return $this->evaluate($this->configureTitleUsing, ['state' => $state]);
         } else {
             if ($state['description'] == $state['event']) {
-                $className = property_exists($state['subject'], 'activityTitleName') && ! empty($state['subject']::$activityTitleName)
-                ? $state['subject']::$activityTitleName
-                : Str::lower(Str::snake(class_basename($state['subject']), ' '));
+                $className = $this->getClassName($state);
+
                 $causerName = $this->getCauserName($state['causer']);
                 $update_at  = Carbon::parse($state['update'])->translatedFormat(config('filament-activitylog.datetime_format'));
 
@@ -67,7 +66,7 @@ class TimeLineTitleEntry extends Entry
                     sprintf(
                         __('activitylog::timeline.title.modifiedTitle'),
                         $className,
-                        $state['event'],
+                        __('activitylog::timeline.event.'.$state['event']),
                         $causerName,
                         $update_at
                     )
@@ -76,5 +75,15 @@ class TimeLineTitleEntry extends Entry
         }
 
         return '';
+    }
+
+    public function getClassName(array $state): string {
+        if ( property_exists($state['subject'], 'activityTitleName') && ! empty($state['subject']::$activityTitleName)) {
+            return $state['subject']::$activityTitleName;
+        } else if (\method_exists($state['subject'], 'activityTitle')) {
+            return $state['subject']::activityTitle();
+        }
+
+        return Str::lower(Str::snake(class_basename($state['subject']), ' '));
     }
 }
