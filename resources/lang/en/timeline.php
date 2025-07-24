@@ -3,6 +3,21 @@ return [
     'title' => [
         'modifiedTitle' => 'The <strong>%s</strong> was <strong>%s</strong> by <strong>%s</strong>. <br><small> Updated at: <strong>%s</strong></small>',
     ],
+     'event' => [
+        'created' => 'created',
+        'updated' => 'updated',
+        'deleted' => 'deleted',
+        'restored' => 'restored',
+        'forceDeleted' => 'force deleted',
+        'byperson' => [
+            'created' => 'created',
+            'updated' => 'updated',
+            'deleted' => 'deleted',
+            'restored' => 'restored',
+            'forceDeleted' => 'force deleted',
+        ],
+    ],
+
     'properties' => [
         'modifiedProperties'     => '%s %s the following: <br>%s',
         'compareOldAndNewValues' => [
