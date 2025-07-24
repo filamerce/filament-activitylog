@@ -66,7 +66,7 @@ class TimeLineTitleEntry extends Entry
                     sprintf(
                         __('activitylog::timeline.title.modifiedTitle'),
                         $className,
-                        __('activitylog::timeline.event.'.$state['event']),
+                        __('activitylog::timeline.event.' . $state['event']),
                         $causerName,
                         $update_at
                     )
@@ -77,11 +77,18 @@ class TimeLineTitleEntry extends Entry
         return '';
     }
 
-    public function getClassName(array $state): string {
-        if ( property_exists($state['subject'], 'activityTitleName') && ! empty($state['subject']::$activityTitleName)) {
-            return $state['subject']::$activityTitleName;
-        } else if (\method_exists($state['subject'], 'activityTitle')) {
-            return $state['subject']::activityTitle();
+    public function getClassName(array $state): string
+    {
+        if ($state['subject'] === null) {
+            return 'unknown';
+        }
+
+        if (class_exists($state['subject'])) {
+            if (property_exists($state['subject'], 'activityTitleName') && ! empty($state['subject']::$activityTitleName)) {
+                return $state['subject']::$activityTitleName;
+            } else if (\method_exists($state['subject'], 'activityTitle')) {
+                return $state['subject']::activityTitle();
+            }
         }
 
         return Str::lower(Str::snake(class_basename($state['subject']), ' '));

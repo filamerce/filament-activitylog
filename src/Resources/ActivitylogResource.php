@@ -158,8 +158,9 @@ class ActivitylogResource extends Resource
                             if ($hasJsonValues) {
                                 $schema[] = Textarea::make('old')
                                     ->formatStateUsing(function () use ($record) {
-                                        $old = $record->properties->get('old');
+                                        $old        = $record->properties->get('old');
                                         $normalized = static::normalizeProperties(static::formatDateValues($old));
+
                                         return json_encode($normalized, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
                                     })
                                     ->label(__('activitylog::forms.fields.old.label'))
@@ -170,6 +171,7 @@ class ActivitylogResource extends Resource
                                 $schema[] = KeyValue::make('old')
                                     ->formatStateUsing(function () use ($record) {
                                         $old = $record->properties->get('old');
+
                                         return static::normalizeProperties(static::formatDateValues($old));  // <-- FIXED
                                     })
                                     ->label(__('activitylog::forms.fields.old.label'));
@@ -184,6 +186,7 @@ class ActivitylogResource extends Resource
                                     ->formatStateUsing(function () use ($record) {
                                         $attributes = $record->properties->get('attributes');
                                         $normalized = static::normalizeProperties(static::formatDateValues($attributes));
+
                                         return json_encode($normalized, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
                                     })
                                     ->label(__('activitylog::forms.fields.attributes.label'))
@@ -194,11 +197,13 @@ class ActivitylogResource extends Resource
                                 $schema[] = KeyValue::make('attributes')
                                     ->formatStateUsing(function () use ($record) {
                                         $attributes = $record->properties->get('attributes');
+
                                         return static::normalizeProperties(static::formatDateValues($attributes));
                                     })
                                     ->label(__('activitylog::forms.fields.attributes.label'));
                             }
                         }
+
                         return $schema;
                     }),
             ])
@@ -377,7 +382,6 @@ class ActivitylogResource extends Resource
         }
     }
 
-
     protected static function formatDateValues(array $values): array
     {
         $formatted = [];
@@ -412,6 +416,7 @@ class ActivitylogResource extends Resource
                 $item = json_encode($item, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
             } elseif (is_string($item) && json_decode($item) !== null) {
                 $decoded = json_decode($item, true);
+
                 if ($decoded !== null) {
                     $item = $decoded;
                 }

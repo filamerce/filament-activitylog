@@ -34,7 +34,7 @@ class TimeLinePropertiesEntry extends Entry
             $changes    = $this->getPropertyChanges($properties);
             $causerName = $this->getCauserName($state['causer']);
 
-            return new HtmlString(sprintf(__('activitylog::timeline.properties.modifiedProperties'), $causerName, __('activitylog::timeline.event.byperson.'.$state['event']), implode('<br>', $changes)));
+            return new HtmlString(sprintf(__('activitylog::timeline.properties.modifiedProperties'), $causerName, __('activitylog::timeline.event.byperson.' . $state['event']), implode('<br>', $changes)));
         }
 
         return null;
@@ -61,12 +61,12 @@ class TimeLinePropertiesEntry extends Entry
             $oldValue = is_array($oldValues[$key]) ? json_encode($oldValues[$key], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) : $oldValues[$key] ?? '-';
             $newValue = $this->formatNewValue($newValue);
 
-            $keyForDisplay = (string)str($key)
-            ->beforeLast('.')
-            ->afterLast('.')
-            ->kebab()
-            ->replace(['-', '_'], ' ')
-            ->ucfirst();
+            $keyForDisplay = (string) str($key)
+                ->beforeLast('.')
+                ->afterLast('.')
+                ->kebab()
+                ->replace(['-', '_'], ' ')
+                ->ucfirst();
 
             if (isset($oldValues[$key]) && $oldValues[$key] != $newValue) {
                 $changes[] = sprintf(__('activitylog::timeline.properties.compareOldAndNewValues.notEquals'), __($keyForDisplay), htmlspecialchars($oldValue), htmlspecialchars($newValue));
@@ -81,23 +81,24 @@ class TimeLinePropertiesEntry extends Entry
     private function getNewValues(array $newValues): array
     {
         return array_map(
-            function ($key, $value){
-                $keyForDisplay = (string)str($key)
-            ->beforeLast('.')
-            ->afterLast('.')
-            ->kebab()
-            ->replace(['-', '_'], ' ')
-            ->ucfirst();
+            function ($key, $value) {
+                $keyForDisplay = (string) str($key)
+                    ->beforeLast('.')
+                    ->afterLast('.')
+                    ->kebab()
+                    ->replace(['-', '_'], ' ')
+                    ->ucfirst();
+
                 return sprintf(
-                __('activitylog::timeline.properties.getNewValues'),
-                __($keyForDisplay),
-                htmlspecialchars($this->formatNewValue($value))
-            );
-        },
-        array_keys($newValues),
-        $newValues
-    );
-}
+                    __('activitylog::timeline.properties.getNewValues'),
+                    __($keyForDisplay),
+                    htmlspecialchars($this->formatNewValue($value))
+                );
+            },
+            array_keys($newValues),
+            $newValues
+        );
+    }
 
     private function formatNewValue($value): string
     {
